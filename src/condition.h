@@ -3,9 +3,10 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-struct connetion{
+struct connetion
+{
     struct condition *to;
-    double *value;
+    double value;
 };
 
 struct condition
@@ -13,9 +14,9 @@ struct condition
     char *name;
     bool value;
     size_t number_of_connetions;
-    struct connetion **connetion;
+    struct connetion *connetion;
 };
 
 int init_condition(struct condition *condition);
-int add_connection(struct condition *from, struct condition *to);
+int add_connection(struct condition *from, struct condition *to, double value);
 #endif

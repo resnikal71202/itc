@@ -10,7 +10,7 @@ LIBDIR := lib
 STACK := -fstack-protector-all -Wstack-protector
 
 # Specifies to GCC the required warnings
-WARNS := -Wall -Wextra 
+WARNS := -Wall -Wextra
 
 # flags for comeling
 CFLAGES := -O4 $(STACK) $(WARNS)
@@ -19,13 +19,16 @@ CFLAGES := -O4 $(STACK) $(WARNS)
 LIBS := #-lm
 
 # %.o files
-NAMES := $(notdir $(wildcard $(SRCDIR)/*.c)
+NAMES := $(SRCDIR)/*.c
 OBJECTS := $(patsubset %, $(LIBDIR)/%.o,$(NAMES))
 
 defalut : all
 
 all: $(OBJECTS)
-	$(CC) $+ $(CFLAGES) $(LIBS)
+	$(CC) $(NAMES) $+ $(CFLAGES) $(LIBS)\
+
+$(LIBDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) -c $^ -o $@ $(CFLAGES) $(LIBDIR)
 
 clean:
-	@rm a.out $(LIBDIR)/*;
+	@rm -rvf a.out $(LIBDIR)/*;
