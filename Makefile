@@ -13,7 +13,7 @@ STACK := -fstack-protector-all -Wstack-protector
 WARNS := -Wall -Wextra
 
 # flags for comeling
-CFLAGES := -O4 $(STACK) $(WARNS)
+CFLAGES := -O4 $(STACK) $(WARNS) -std=c99
 
 # libs
 LIBS := #-lm

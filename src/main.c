@@ -16,6 +16,13 @@ int main(int argc, char **argv)
     printf("added con\n");
     add_connection(&con[3], &con[0], 0.6);
     printf("added con\n");
+    for (int i = 0; i < 100000; i++)
+    {
+        add_connection(&con[3], &con[3], 0.1);
+        printf("connectet to : %x\n", con[3].connetion[i].to);
+        printf("%d value : %ff\n", i, con[3].connetion[i].value);
+    }
+
     add_connection(&con[3], &con[3], 0.1); // Woher kommt der Speicher???
 
     for (size_t i = 0; i < sizeof(con) / sizeof(con[0]); i++)
