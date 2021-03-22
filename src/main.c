@@ -1,35 +1,24 @@
 #include <stdio.h>
 #include "condition.h"
+#include "condition_probability.h"
 
 int main(int argc, char **argv)
 {
-    struct condition con[4];
+    struct condition con[3];
     for (size_t i = 0; i < sizeof(con) / sizeof(con[0]); i++)
     {
         init_condition(&con[i]);
-        printf("this: %x\n", &con[i]);
     }
 
-    add_connection(&con[0], &con[1], 0.3);
-    printf("added con\n");
-    add_connection(&con[1], &con[2], 0.1);
-    printf("added con\n");
-    add_connection(&con[3], &con[0], 0.6);
-    printf("added con\n");
-    for (int i = 0; i < 100000; i++)
-    {
-        add_connection(&con[3], &con[3], 0.1);
-        printf("connectet to : %x\n", con[3].connetion[i].to);
-        printf("%d value : %ff\n", i, con[3].connetion[i].value);
-    }
+    add_connection(&con[0], &con[1], 0.5);
+    add_connection(&con[0], &con[2], 0.5);
+    add_connection(&con[1], &con[0], 0.5);
+    add_connection(&con[1], &con[1], 0.5);
+    add_connection(&con[2], &con[1], 0.5);
+    add_connection(&con[2], &con[2], 0.5);
 
-    add_connection(&con[3], &con[3], 0.1); // Woher kommt der Speicher???
-
-    for (size_t i = 0; i < sizeof(con) / sizeof(con[0]); i++)
-    {
-        printf("connectet to : %x\n", con[i].connetion[0].to);
-        printf("value : %ff\n", con[i].connetion[0].value);
-    }
-    printf("connectet to : %x\n", con[3].connetion[1].to);
-    printf("value : %ff\n", con[3].connetion[1].value);
+    double *pa;
+    pa = p(con, 3);
+    printf("%f, %f, %f\n", pa[0], pa[1], pa[2]);
+    return 0;
 }
