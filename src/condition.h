@@ -19,4 +19,5 @@ struct condition
 
 int init_condition(struct condition *condition);
 int add_connection(struct condition *from, struct condition *to, double value);
+int deinit_condition(struct condition *condition);
 #endif

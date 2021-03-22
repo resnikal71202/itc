@@ -18,3 +18,9 @@ int add_connection(struct condition *from, struct condition *to, double value)
     con_ptr->value = value;
     return 0;
 }
+
+int deinit_condition(struct condition *condition)
+{
+    free(condition->connetion);
+    return 0;
+}

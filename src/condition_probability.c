@@ -82,5 +82,11 @@ double *p(struct condition *A, int number_of_conditions)
         // printf("arr[%d][%d] = %f\n", number_of_conditions - 1, x, arr[number_of_conditions - 1][x]);
     }
 
-    return gauss_elimination(arr, number_of_conditions);
+    double *pout = gauss_elimination(arr, number_of_conditions);
+    for (int i = 0; i < number_of_conditions; i++)
+    {
+        free(arr[i]);
+    }
+    free(arr);
+    return pout;
 }
