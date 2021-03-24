@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "condition.h"
 #include "condition_probability.h"
+#include "entropy.h"
 
 int main(int argc, char **argv)
 {
@@ -18,10 +20,11 @@ int main(int argc, char **argv)
     add_connection(&con[2], &con[2], 0.5);
 
     double *pv;
-    pv = p(con, sizeof(con) / sizeof(con[0]));
+    int number_of_ps = sizeof(con) / sizeof(con[0]);
+    pv = p(con, number_of_ps);
 
     printf("p(1):%f, p(2):%f, p(3):%f\n", pv[0], pv[1], pv[2]);
-
+    printf("H(x) = %f\n", H(pv, number_of_ps));
     free(pv);
     for (size_t i = 0; i < sizeof(con) / sizeof(con[0]); i++)
     {

@@ -21,6 +21,7 @@ int add_connection(struct condition *from, struct condition *to, double value)
 
 int deinit_condition(struct condition *condition)
 {
+    condition->number_of_connetions = 0;
     free(condition->connetion);
     return 0;
 }

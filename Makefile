@@ -16,7 +16,7 @@ WARNS := -Wall -Wextra
 CFLAGES := -O4 $(STACK) $(WARNS) -std=c99
 
 # libs
-LIBS := #-lm
+LIBS := -lm
 
 # %.o files
 NAMES := $(SRCDIR)/*.c
