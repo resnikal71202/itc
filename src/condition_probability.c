@@ -33,7 +33,7 @@ double *gauss_elimination(double **A, int n)
     return x;
 }
 
-double *p(struct condition *A, int number_of_conditions)
+double *pz(struct condition *A, int number_of_conditions)
 {
     double **arr = malloc(sizeof(double *) * number_of_conditions);
     for (int i = 0; i < number_of_conditions; i++)
@@ -48,21 +48,23 @@ double *p(struct condition *A, int number_of_conditions)
             arr[y][x] = 0.0;
         }
     }
+
     //add connections
     for (int x = 0; x < number_of_conditions; x++)
     {
-        for (int i = 0; i < number_of_conditions; i++)
+        for (int y = 0; y < number_of_conditions; y++)
         {
-            for (size_t j = 0; j < A[i].number_of_connetions; j++)
+            for (size_t i = 0; i < A[x].number_of_connetions; i++)
             {
-                if (A[i].connetion[j].to == &A[x])
+                if (A[x].connetion[i].to == &A[y])
                 {
-                    arr[x][i] += A[x].connetion[j].value;
-                    // printf("add[%d][%d] += %f\n", x, i, A[x].connetion[j].value);
+                    arr[y][x] += A[x].connetion[i].value;
+                    // printf("add[%d][%d] += %f\n", y, x, A[x].connetion[i].value);
                 }
             }
         }
     }
+
     //minus it self
     for (int y = 0; y < number_of_conditions - 1; y++)
     {
@@ -70,19 +72,25 @@ double *p(struct condition *A, int number_of_conditions)
         {
             if (x == y)
                 arr[y][x] -= 1.0;
-            // printf("arr[%d][%d] = %f\n", y, x, arr[y][x]);
+            printf("arr[%d][%d] = %f\n", y, x, arr[y][x]);
         }
         arr[y][number_of_conditions] = 0.0;
-        // printf("arr[%d][%d] = %f\n", y, number_of_conditions, 0.0);
+        printf("arr[%d][%d] = %f\n", y, number_of_conditions, 0.0);
     }
     //add last row of 1
     for (int x = 0; x < number_of_conditions + 1; x++)
     {
         arr[number_of_conditions - 1][x] = 1.0;
-        // printf("arr[%d][%d] = %f\n", number_of_conditions - 1, x, arr[number_of_conditions - 1][x]);
+        printf("arr[%d][%d] = %f\n", number_of_conditions - 1, x, arr[number_of_conditions - 1][x]);
     }
 
     double *pout = gauss_elimination(arr, number_of_conditions);
+
+    for (int i = 0; i < number_of_conditions; i++)
+    {
+        A[i].p = pout[i];
+    }
+
     for (int i = 0; i < number_of_conditions; i++)
     {
         free(arr[i]);
