@@ -13,8 +13,11 @@ struct condition
 {
     char *name;
     bool value;
+    double p;
     size_t number_of_connetions;
     struct connetion *connetion;
+    // size_t number_of_connetions_to;
+    // struct connetion *connetion_to;
 };
 
 int init_condition(struct condition *condition);
