@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     add_connection(&con[0], &con[0], 0.6);
     add_connection(&con[1], &con[1], 0.8);
     add_connection(&con[1], &con[0], 0.2);
-    add_connection(&con[1], &con[1], 0.4);
+    add_connection(&con[0], &con[1], 0.4);
 
     // add_connection(&con[0], &con[1], 0.5);
     // add_connection(&con[0], &con[2], 0.5);

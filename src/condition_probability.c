@@ -72,16 +72,16 @@ double *pz(struct condition *A, int number_of_conditions)
         {
             if (x == y)
                 arr[y][x] -= 1.0;
-            printf("arr[%d][%d] = %f\n", y, x, arr[y][x]);
+            // printf("arr[%d][%d] = %f\n", y, x, arr[y][x]);
         }
         arr[y][number_of_conditions] = 0.0;
-        printf("arr[%d][%d] = %f\n", y, number_of_conditions, 0.0);
+        // printf("arr[%d][%d] = %f\n", y, number_of_conditions, 0.0);
     }
     //add last row of 1
     for (int x = 0; x < number_of_conditions + 1; x++)
     {
         arr[number_of_conditions - 1][x] = 1.0;
-        printf("arr[%d][%d] = %f\n", number_of_conditions - 1, x, arr[number_of_conditions - 1][x]);
+        // printf("arr[%d][%d] = %f\n", number_of_conditions - 1, x, arr[number_of_conditions - 1][x]);
     }
 
     double *pout = gauss_elimination(arr, number_of_conditions);
